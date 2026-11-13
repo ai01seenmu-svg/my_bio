@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ช่องทางการติดตาม | Creator Profile</title>
+    
+    <!-- โหลด Tailwind CSS สำหรับตกแต่งหน้าเว็บแบบมินิมอล -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- โหลดฟอนต์ Prompt จาก Google Fonts เพื่อความสวยงามและอ่านง่ายในภาษาไทย -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- โหลด Font Awesome สำหรับไอคอนโซเชียลมีเดีย -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #09090b; /* พื้นหลังสีดำเข้ม (Dark Mode) */
+        }
+        /* เลเยอร์ภาพพื้นหลังพร้อมเอฟเฟกต์ขอบบน 10% และขอบล่าง 10% จางๆ ตรงกลางชัด */
+        .bg-character-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            /* ไล่ระดับความจาง: ขอบบน 0-10% จางลง, 10-90% ชัด 100%, ขอบล่าง 90-100% จางลง */
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.25) 0%,
+                rgba(0, 0, 0, 1) 10%,
+                rgba(0, 0, 0, 1) 90%,
+                rgba(0, 0, 0, 0.25) 100%
+            );
+            mask-image: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.25) 0%,
+                rgba(0, 0, 0, 1) 10%,
+                rgba(0, 0, 0, 1) 90%,
+                rgba(0, 0, 0, 0.25) 100%
+            );
+        }
+        /* เอฟเฟกต์ตอนชี้ปุ่มลิงก์แบบนุ่มนวล ไม่หวือหวา */
+        .link-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+        }
+        .link-card:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 text-zinc-100 antialiased selection:bg-zinc-700 selection:text-white relative">
+
+    <!-- เลเยอร์แสดงภาพพื้นหลัง -->
+    <div id="bg-layer" class="bg-character-layer" aria-hidden="true"></div>
+
+    <!-- ===================================================================== -->
+    <!-- 👇 ส่วนตั้งค่าข้อมูลและลิงก์ของคุณ (แก้ไขข้อมูลทั้งหมดได้ที่จุดนี้จุดเดียว) 👇 -->
+    <!-- ===================================================================== -->
+    <script>
+        const CREATOR_CONFIG = {
+            // 1. ข้อมูลโปรไฟล์
+            name: "seenไม่ได้หวัง",
+            bio: "สวัสดีครับ!ยินดีที่ได้รู้จัก ผมชื่อซีนคั้บ ฝากกดติดตามหน่อยนะค้าบ",
+            // ใส่ลิงก์รูปโปรไฟล์ของคุณตรงนี้
+            avatarUrl: "A3.PNG",
+            // ใส่ชื่อไฟล์รูปพื้นหลัง (วางไฟล์รูปไว้ในโฟลเดอร์เดียวกับไฟล์เว็บนี้ หรือใส่ URL รูปภาพ)
+            backgroundUrl: "arashiyama.jpg",
+
+            // 2. ลิงก์ช่องทางโซเชียลมีเดียทั้ง 4 ช่องทาง (นำลิงก์ของคุณมาวางแทนที่ # ได้เลย)
+            links: [
+                {
+                    platform: "YouTube",
+                    handle: "seenไม่ได้หวัง",
+                    url: "https://www.youtube.com/channel/UClH0yjigvIPf4pw26pa40-A", // <-- ใส่ลิงก์ YouTube ที่นี่
+                    iconClass: "fa-brands fa-youtube",
+                    iconColor: "text-red-500",
+                    bgHover: "hover:border-red-500/40"
+                },
+                {
+                    platform: "TikTok",
+                    handle: "seenไม่ได้หวัง",
+                    url: "https://www.tiktok.com/@seenjoon2?is_from_webapp=1&sender_device=pc", // <-- ใส่ลิงก์ TikTok ที่นี่
+                    iconClass: "fa-brands fa-tiktok",
+                    iconColor: "text-white",
+                    bgHover: "hover:border-zinc-500"
+                },
+                {
+                    platform: "Facebook",
+                    handle: "ซีนไม่ได้หวัง",
+                    url: "https://www.facebook.com/seen.maidaiwang", // <-- ใส่ลิงก์ Facebook ที่นี่
+                    iconClass: "fa-brands fa-facebook",
+                    iconColor: "text-blue-500",
+                    bgHover: "hover:border-blue-500/40"
+                },
+                {
+                    platform: "Instagram",
+                    handle: "seenไม่ได้หวัง",
+                    url: "https://www.instagram.com/sq_sxin/", // <-- ใส่ลิงก์ Instagram ที่นี่
+                    iconClass: "fa-brands fa-instagram",
+                    iconColor: "text-pink-500",
+                    bgHover: "hover:border-pink-500/40"
+                }
+            ]
+        };
+    </script>
+    <!-- ===================================================================== -->
+    <!-- 👆 สิ้นสุดส่วนตั้งค่า (ด้านล่างคือส่วนแสดงผล ไม่จำเป็นต้องแก้ไข) 👆         -->
+    <!-- ===================================================================== -->
+
+    <!-- กล่องหลักตรงกลางหน้าจอ (โทนสีดำโปร่งแสงเพื่อให้เห็นพื้นหลังชัดเจนขึ้น) -->
+    <main class="w-full max-w-md mx-auto bg-zinc-950/75 backdrop-blur-[4px] rounded-3xl shadow-2xl border border-zinc-800/80 p-6 sm:p-8">
+        
+        <!-- ส่วนหัว: รูปโปรไฟล์ ชื่อ และคำแนะนำตัว -->
+        <header class="flex flex-col items-center text-center mb-8">
+            <div class="relative mb-4">
+                <img 
+                    id="profile-avatar" 
+                    src="" 
+                    alt="Profile Picture" 
+                    class="w-24 h-24 rounded-full object-cover border-2 border-zinc-800 shadow-md bg-zinc-900"
+                    onerror="this.src='https://placehold.co/200x200/18181b/a1a1aa?text=Profile'"
+                >
+            </div>
+            
+            <h1 id="profile-name" class="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-2">
+                <!-- ชื่อจะถูกดึงมาแสดงอัตโนมัติ -->
+            </h1>
+            
+            <p id="profile-bio" class="text-sm sm:text-base text-zinc-400 font-light leading-relaxed max-w-xs">
+                <!-- คำอธิบายจะถูกดึงมาแสดงอัตโนมัติ -->
+            </p>
+        </header>
+
+        <!-- รายการปุ่มลิงก์โซเชียลมีเดีย -->
+        <section id="links-container" class="space-y-3.5" aria-label="ช่องทางการติดตาม">
+            <!-- ปุ่มทั้ง 4 ช่องทางจะถูกสร้างขึ้นมาตรงนี้อัตโนมัติ -->
+        </section>
+
+        <!-- ปุ่มคัดลอกลิงก์หน้านี้เผื่อแชร์ให้คนอื่น -->
+        <div class="mt-8 pt-6 border-t border-zinc-800/80 flex justify-center">
+            <button 
+                onclick="copyPageUrl()" 
+                class="inline-flex items-center gap-2 text-xs sm:text-sm text-zinc-400 hover:text-zinc-200 transition-colors py-2 px-4 rounded-full hover:bg-zinc-900/80 cursor-pointer"
+            >
+                <i class="fa-solid fa-link"></i>
+                <span id="copy-btn-text">คัดลอกลิงก์หน้านี้</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- ส่วนท้ายเครดิตเล็กๆ -->
+    <footer class="mt-6 text-center text-xs text-zinc-500">
+        <p>© <span id="current-year"></span> <span id="footer-name"></span></p>
+    </footer>
+
+    <!-- กล่องแจ้งเตือนแบบนุ่มนวล (Toast Notification) -->
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-zinc-800 border border-zinc-700 text-zinc-100 text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-xl opacity-0 pointer-events-none transition-opacity duration-300 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span>คัดลอกลิงก์เรียบร้อยแล้ว!</span>
+    </div>
+
+    <!-- ปุ่มสำหรับลองเลือกรูปจากเครื่องมาแสดงตัวอย่างในหน้า Preview -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <label class="cursor-pointer bg-zinc-800/90 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs px-3.5 py-2 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-2 transition">
+            <i class="fa-regular fa-image"></i>
+            <span>ลองเลือกรูปพื้นหลัง</span>
+            <input type="file" accept="image/*" class="hidden" onchange="previewBackground(event)">
+        </label>
+    </div>
+
+    <!-- สคริปต์สำหรับนำข้อมูลจาก CREATOR_CONFIG มาแสดงผล -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            try {
+                // ตั้งค่ารูปภาพพื้นหลัง
+                if (CREATOR_CONFIG.backgroundUrl) {
+                    document.getElementById("bg-layer").style.backgroundImage = `url('${CREATOR_CONFIG.backgroundUrl}')`;
+                }
+
+                // อัปเดตข้อมูลโปรไฟล์
+                document.getElementById("profile-avatar").src = CREATOR_CONFIG.avatarUrl;
+                document.getElementById("profile-name").textContent = CREATOR_CONFIG.name;
+                document.getElementById("profile-bio").textContent = CREATOR_CONFIG.bio;
+                document.getElementById("footer-name").textContent = CREATOR_CONFIG.name;
+                document.getElementById("current-year").textContent = new Date().getFullYear();
+
+                // สร้างปุ่มลิงก์ทั้ง 4 ช่องทาง
+                const container = document.getElementById("links-container");
+                
+                CREATOR_CONFIG.links.forEach(item => {
+                    const linkElement = document.createElement("a");
+                    linkElement.href = item.url;
+                    linkElement.target = "_blank"; // เปิดในแท็บใหม่
+                    linkElement.rel = "noopener noreferrer";
+                    linkElement.className = `link-card flex items-center justify-between w-full p-4 bg-zinc-900/85 hover:bg-zinc-900 border border-zinc-800 rounded-2xl ${item.bgHover} group`;
+
+                    linkElement.innerHTML = `
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-zinc-800/90 flex items-center justify-center text-xl ${item.iconColor} group-hover:scale-105 transition-transform">
+                                <i class="${item.iconClass}"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-medium text-zinc-100 text-sm sm:text-base">${item.platform}</div>
+                                <div class="text-xs text-zinc-400">${item.handle}</div>
+                            </div>
+                        </div>
+                        <div class="text-zinc-600 group-hover:text-zinc-300 group-hover:translate-x-0.5 transition-all pr-1">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </div>
+                    `;
+
+                    container.appendChild(linkElement);
+                });
+            } catch (error) {
+                console.error("เกิดข้อผิดพลาดในการโหลดข้อมูล:", error);
+            }
+        });
+
+        // ฟังก์ชันคัดลอกลิงก์หน้าเว็บ
+        function copyPageUrl() {
+            const tempInput = document.createElement("input");
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // แสดงแถบแจ้งเตือนด้านล่าง
+            const toast = document.getElementById("toast");
+            toast.classList.remove("opacity-0");
+            setTimeout(() => {
+                toast.classList.add("opacity-0");
+            }, 2500);
+        }
+
+        // ฟังก์ชันสำหรับทดสอบเลือกรูปภาพจากเครื่องมาแสดงเป็นพื้นหลัง
+        function previewBackground(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                document.getElementById("bg-layer").style.backgroundImage = `url('${imageUrl}')`;
+            }
+        }
+    </script>
+</body>
+</html>
