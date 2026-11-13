@@ -26,9 +26,9 @@
             position: fixed;
             inset: 0;
             z-index: -1;
-            background-position: center center;
-            background-size: contain;
-            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: auto; /* คงขนาดเดิมของรูปภาพไว้ไม่ยืดหรือหด */
+            background-repeat: repeat; /* ให้รูปภาพเรียงซ้ำเต็มพื้นที่ทุกขนาดหน้าจอ */
             /* ไล่ระดับความจาง: ขอบบน 0-10% จางลง, 10-90% ชัด 100%, ขอบล่าง 90-100% จางลง */
             -webkit-mask-image: linear-gradient(
                 to bottom,
