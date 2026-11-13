@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ช่องทางการติดตาม | Creator Profile</title>
+    <title>ช่องทางการติดตาม | seenไม่ได้หวัง:IG,Tiktok,Facebook,YouTube</title>
     
     <!-- โหลด Tailwind CSS สำหรับตกแต่งหน้าเว็บแบบมินิมอล -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -70,7 +70,7 @@
         const CREATOR_CONFIG = {
             // 1. ข้อมูลโปรไฟล์
             name: "seenไม่ได้หวัง",
-            bio: "สวัสดีครับ!ยินดีที่ได้รู้จัก ผมชื่อซีนคั้บ ฝากกดติดตามหน่อยนะค้าบ",
+            bio: "ผมชื่อซีนคั้บ ฝากกดติดตามหน่อยนะค้าบ ช่อง:เกม,อนิเมะ,การ์ตูน,หนัง, และ มีมต่างๆ",
             // ใส่ลิงก์รูปโปรไฟล์ของคุณตรงนี้
             avatarUrl: "A3.PNG",
             // ใส่ชื่อไฟล์รูปพื้นหลัง (วางไฟล์รูปไว้ในโฟลเดอร์เดียวกับไฟล์เว็บนี้ หรือใส่ URL รูปภาพ)
@@ -170,8 +170,11 @@
         <span>คัดลอกลิงก์เรียบร้อยแล้ว!</span>
     </div>
 
-    <!-- ปุ่มสำหรับลองเลือกรูปจากเครื่องมาแสดงตัวอย่างในหน้า Preview -->
-    <div class="fixed bottom-4 right-4 z-50">
+    <!-- ปุ่มสำหรับลองเลือกรูปจากเครื่องมาแสดงตัวอย่าง พร้อมข้อความแนะนำด้านบนปุ่ม -->
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-1.5">
+        <span class="text-[11px] text-zinc-300 bg-zinc-950/80 px-2.5 py-1 rounded-full border border-zinc-800/80 backdrop-blur-sm shadow-sm">
+            สามารถกดเปลี่ยนรูปพื้นหลังเล่นได้นะครับ ✨
+        </span>
         <label class="cursor-pointer bg-zinc-800/90 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs px-3.5 py-2 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-2 transition">
             <i class="fa-regular fa-image"></i>
             <span>ลองเลือกรูปพื้นหลัง</span>
